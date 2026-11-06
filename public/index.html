@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fa">
+    <title>Usuários | Aula Online</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./usuarios.js" defer></script>
+</head>
+<body>
+    <main class="layout">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">AULA ONLINE · ADMINISTRAÇÃO</p>
+                <h1>Usuários</h1>
+                <p class="subtitle">Cadastre e gerencie os usuários da plataforma.</p>
+            </div>
+            <span class="header-mark" aria-hidden="true">A</span>
+        </header>
+
+        <section class="content-grid" aria-label="Gerenciamento de usuários">
+            <section class="panel form-panel" aria-labelledby="form-title">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">DADOS DO USUÁRIO</p>
+                        <h2 id="form-title">Novo cadastro</h2>
+                    </div>
+                </div>
+
+                <form id="user-form">
+                    <label for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" maxlength="150" autocomplete="name" placeholder="Ex.: Maria Silva" required>
+
+                    <label for="email">E-mail</label>
+                    <input id="email" name="email" type="email" maxlength="100" autocomplete="email" placeholder="voce@exemplo.com" required>
+
+                    <label for="senha">Senha <span id="password-hint" class="field-hint"></span></label>
+                    <input id="senha" name="senha" type="password" maxlength="255" autocomplete="new-password" placeholder="Mínimo de 8 caracteres" minlength="8">
+
+                    <p id="form-message" class="message" role="status" aria-live="polite"></p>
+
+                    <div class="form-actions">
+                        <button id="submit-button" class="button button-primary" type="submit">Cadastrar usuário</button>
+                        <button id="cancel-button" class="button button-secondary" type="button" hidden>Cancelar edição</button>
+                    </div>
+                </form>
+                <p class="security-note">A senha nunca é exibida na lista de usuários.</p>
+            </section>
+
+            <section class="panel list-panel" aria-labelledby="list-title">
+                <div class="panel-heading list-heading">
+                    <div>
+                        <p class="eyebrow">CADASTROS</p>
+                        <h2 id="list-title">Usuários cadastrados</h2>
+                    </div>
+                    <span id="user-count" class="count-badge">0</span>
+                </div>
+
+                <div class="search-wrap">
+                    <label class="sr-only" for="search">Buscar usuário</label>
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input id="search" type="search" placeholder="Buscar por nome ou e-mail">
+                </div>
+
+                <p id="list-message" class="message" role="status" aria-live="polite"></p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col" class="actions-heading">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list"></tbody>
+                    </table>
+                    <div id="empty-state" class="empty-state" hidden>
+                        <span class="empty-icon" aria-hidden="true">◎</span>
+                        <strong>Nenhum usuário por aqui</strong>
+                        <span>Cadastre um usuário ou tente outra busca.</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <footer>Gerenciamento de usuários · Aula Online</footer>
+    </main>
+
+    <dialog id="delete-dialog" class="confirm-dialog" aria-labelledby="delete-title" aria-describedby="delete-description">
+        <div class="dialog-icon" aria-hidden="true">!</div>
+        <p class="eyebrow">CONFIRMAÇÃO</p>
+        <h2 id="delete-title">Excluir usuário?</h2>
+        <p id="delete-description" class="dialog-description">
+            Tem certeza que deseja excluir <strong id="delete-user-name"></strong>? Esta ação não pode ser desfeita.
+        </p>
+        <div class="dialog-actions">
+            <button id="cancel-delete" class="button button-secondary" type="button">Cancelar</button>
+            <button id="confirm-delete" class="button button-danger" type="button">Sim, excluir</button>
+        </div>
+    </dialog>
+</body>
+</html>
